@@ -116,7 +116,7 @@ while True:
             pyautogui.moveRel(np.sign(x_move) * x_move ** 2 * 100, np.sign(y_move) * y_move ** 2 * 100,
                               duration=0, _pause=False)
             wait = True
-        y_scroll = -round(pygame.joystick.Joystick(0).get_axis(controller.scroll) * 50)
+        y_scroll = round(-pygame.joystick.Joystick(0).get_axis(controller.scroll) * 50)
         if abs(y_scroll) < 2:
             y_scroll = 0
         if y_scroll != 0:
