@@ -13,7 +13,8 @@ if len(joysticks) == 0:
 can_move = True
 pygame.event.set_blocked(pygame.JOYAXISMOTION)
 pyautogui.FAILSAFE = False
-wait = False
+movementSensitivity = 0.05
+scrollingSensitivity = 2
 
 
 # Enumerate the controllers mapping so they can be used
@@ -107,23 +108,21 @@ while True:
         # this is to prevent slightly misaligned stick from constantly moving
         x_move = pygame.joystick.Joystick(0).get_axis(controller.mouseLeftRight)
         y_move = pygame.joystick.Joystick(0).get_axis(controller.mouseUpDown)
-        if abs(x_move) < 0.05:
+        if abs(x_move) < movementSensitivity:
             x_move = 0
-        if abs(y_move) < 0.05:
+        if abs(y_move) < movementSensitivity:
             y_move = 0
 
         if x_move != 0 or y_move != 0:
             pyautogui.moveRel(np.sign(x_move) * x_move ** 2 * 100, np.sign(y_move) * y_move ** 2 * 100,
                               duration=0, _pause=False)
-            wait = True
+
         y_scroll = round(-pygame.joystick.Joystick(0).get_axis(controller.scroll) * 50)
-        if abs(y_scroll) < 2:
+        if abs(y_scroll) < scrollingSensitivity:
             y_scroll = 0
         if y_scroll != 0:
             pyautogui.vscroll(y_scroll, _pause=False)
-            wait = True
+
         # wait a very small amount of time as to maintain control of mouse and scroll,
         # while still hopefully feeling smooth
-        if wait:
-            wait = False
-            sleep(0.02)
+    sleep(0.02)
