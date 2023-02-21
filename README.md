@@ -1,6 +1,7 @@
 # mouseController
  
 Default controls are:
+
     Move mouse with the left analog stick
     scroll vertically with the right analog stick
     Left click with the bottom button (PS5 X, Xbox A, Nintendo Pro controller B)
