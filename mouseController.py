@@ -96,7 +96,7 @@ while True:
                     can_move = not can_move
                 case _:
                     print(event.__getattribute__('button'))
-            continue
+
         elif event.type == pygame.JOYBUTTONUP:
             match event.__getattribute__('button'):
                 case controller.hold:
